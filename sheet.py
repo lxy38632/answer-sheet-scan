@@ -100,32 +100,12 @@ def get_answer_from_sheet(base_img):
     for i in range(len(question_cnts)):
         cv2.drawContours(temp2_ans_img, question_cnts, i, (0, 0, 0), 1)
 
-    # cv2.imshow('temp', temp2_ans_img)
-    # cv2.waitKey(0)
-
-    # 如果轮廓小于特定值，重新扫描
-    # TODO 运用统计分析排除垃圾轮廓
-    # if len(question_cnts) != CHOICE_CNT_COUNT:
-    #     raise ContourCountError
-
-    # cv2.imshow('temp', temp_ans_img)
-    # cv2.waitKey(0)
+   
 
     # 对轮廓之上而下的排序
     question_cnts, cnts_pos = contours.sort_contours(question_cnts, method="top-to-bottom")
     rows = sort_by_row(list(cnts_pos))
     cols = sort_by_col(list(cnts_pos))
 
-    # cv2.imshow('temp', temp2_ans_img)
-    # cv2.waitKey(0)
-
-    insert_null_2_rows(cols, rows)
-    # 获得答案
-    rows, res = get_ans(ans_img, rows)
-    if not res[0]:
-        print res[1]
-        cv2.imshow('temp1', temp2_ans_img)
-        cv2.waitKey(0)
-        print 'end'
-    else:
-        print res
+    cv2.imshow('temp', temp2_ans_img)
+    cv2.waitKey(0)
